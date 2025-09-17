@@ -1,15 +1,13 @@
 {
   "name": "live-web-app",
   "version": "1.0.0",
-  "description": "React + Node.js unified project for Render",
-  "main": "server.js",
+  "main": "server/scr/server.js",
   "scripts": {
-    "start": "node server.js",
-    "build": "npm install && cd client && npm install && npm run build"
+    "build": "cd server/scr && npm install && npm run build",
+    "start": "node server/scr/server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
-    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
