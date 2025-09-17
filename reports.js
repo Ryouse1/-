@@ -1,0 +1,9 @@
+const reports = [
+  {
+    target: "userB",
+    reporter: "userC",
+    reason: "荒らし",
+    date: "2025-09-17T03:25:00Z"
+  }
+];
+module.exports = reports;
