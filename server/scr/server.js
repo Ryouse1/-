@@ -5,12 +5,12 @@ const path = require('path');
 const app = express();
 
 // Reactなどのビルド成果物を返す場合
-app.use(express.static(path.join(__dirname, 'scr')));
+app.use(express.static(path.join(__dirname, '../scr')));
 // APIがある場合はここに app.get('/api/xxx', ...) など
 
 // Reactのルートハンドラ
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'scr', 'index.html'));
+  res.sendFile(path.join(__dirname, '../scr', 'index.html'));
 });
 
 // ポートは必ず process.env.PORT
