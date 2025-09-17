@@ -1,12 +1,16 @@
-const http = require('http');
+const express = require('express');
+const path = require('path');
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-const server = http.createServer((req, res) => {
-  // ステータスコードとヘッダだけ送ってレスポンス終了
-  res.writeHead(204); // 204 No Content
-  res.end();
+// Reactのビルド済みファイルを配信
+app.use(express.static(path.join(__dirname, 'client/dist')));
+
+// SPA対応
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 });
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Server running silently on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
