@@ -3,11 +3,10 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use('/entry', express.static(path.join(__dirname, 'dist')));
+// /entry などアクセスされても何も表示しない
+app.get('/entry', (req, res) => res.send(''));
 
-// ダミー表示
-app.get('*', (req, res) => {
-  res.send('<h1>Error 404: Not found</h1>');
-});
+// 他の存在しない URL も空
+app.get('*', (req, res) => res.send(''));
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
