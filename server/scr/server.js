@@ -3,12 +3,13 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Reactのビルド済みファイルを配信
-app.use(express.static(path.join(__dirname, 'client/dist')));
+// public フォルダを静的配信
+app.use(express.static(path.join(__dirname, '../../public'))); 
+// server/scr/ から ../../public で /-/public にアクセス
 
-// SPA対応
+// ルートアクセスは index.html を返す
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/dist/index.html'));
+  res.sendFile(path.join(__dirname, '../../public/index.html'));
 });
 
 app.listen(PORT, () => {
