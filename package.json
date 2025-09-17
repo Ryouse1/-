@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "server/scr/server.js",
   "scripts": {
-    "build": "cd server/scr && npm install && npm run build",
-    "start": "node server/scr/server.js"
-  },
+  "build": "cd server/scr && npm install && npm run build",
+  "start": "node server/scr/server.js"
+},
   "dependencies": {
     "express": "^4.18.2",
     "react": "^18.2.0",
