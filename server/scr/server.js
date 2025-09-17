@@ -3,15 +3,27 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// 通常のエントリーページ
+// エントリーページ
 app.use('/entry', express.static(path.join(__dirname, '../../entry')));
 app.get('/entry', (req, res) => {
   res.sendFile(path.join(__dirname, '../../entry/index.html'));
 });
 
-// 存在しないページにアクセスした場合のダミー
+// 存在しないURLにアクセスされた場合にダミー表示
 app.get('*', (req, res) => {
-  res.send('<h1>404 - ページが存在しません</h1><p>保険用のダミーです</p>');
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="ja">
+    <head>
+      <meta charset="UTF-8">
+      <title>Error404 not found</title>
+    </head>
+    <body>
+      <h1>このページは存在しません</h1>
+      <p>このページは存在しません。</p>
+    </body>
+    </html>
+  `);
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
