@@ -1,0 +1,9 @@
+[
+  {
+    "username": "userA",
+    "displayName": "りょうせい",
+    "icon": "icon1.png",
+    "frozenUntil": null,             // 一時凍結の解除日時（nullなら凍結なし）
+    "permanentBan": true             // trueなら無期限凍結
+  }
+]

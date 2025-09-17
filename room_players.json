@@ -1,0 +1,12 @@
+[
+  {
+    "roomNumber": "12345",
+    "players": [
+      {
+        "username": "userA",
+        "displayName": "だれか",
+        "reports": ["userB", "userC"] // このプレイヤーを報告したユーザー名配列
+      }
+    ]
+  }
+]
