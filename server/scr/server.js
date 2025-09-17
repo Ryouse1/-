@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// dist フォルダを静的配信
+// Reactのビルド済み dist 配信
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // SPA対応
