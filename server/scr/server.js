@@ -9,6 +9,12 @@ const io = new Server(server, {
 });
 
 const rooms = []; // 初期ルームなし
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 
 io.on('connection', (socket) => {
   console.log('新しい接続:', socket.id);
