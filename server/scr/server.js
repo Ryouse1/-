@@ -1,18 +1,46 @@
-// server.js
 const express = require('express');
-const path = require('path');
+const http = require('http');
+const { Server } = require('socket.io');
 
 const app = express();
-
-// Reactなどのビルド成果物を返す場合
-app.use(express.static(path.join(__dirname, '../scr')));
-// APIがある場合はここに app.get('/api/xxx', ...) など
-
-// Reactのルートハンドラ
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../scr', 'index.html'));
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: { origin: '*' }
 });
 
-// ポートは必ず process.env.PORT
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const rooms = []; // 初期ルームなし
+
+io.on('connection', (socket) => {
+  console.log('新しい接続:', socket.id);
+
+  socket.emit('updateRooms', rooms);
+
+  socket.on('createRoom', (roomName) => {
+    const roomId = 'room_' + Date.now();
+    const newRoom = { id: roomId, name: roomName, users: 0 };
+    rooms.push(newRoom);
+    io.emit('updateRooms', rooms);
+  });
+
+  socket.on('joinRoom', (roomId) => {
+    socket.join(roomId);
+    const room = rooms.find(r => r.id === roomId);
+    if (room) room.users++;
+    io.emit('updateRooms', rooms);
+  });
+
+  socket.on('leaveRoom', (roomId) => {
+    socket.leave(roomId);
+    const room = rooms.find(r => r.id === roomId);
+    if (room) room.users = Math.max(room.users - 1, 0);
+    io.emit('updateRooms', rooms);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('切断:', socket.id);
+  });
+});
+
+server.listen(process.env.PORT || 3001, () => {
+  console.log('Server running');
+});
