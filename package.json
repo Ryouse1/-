@@ -1,11 +1,18 @@
 {
   "name": "realtime-room-server",
   "version": "1.0.0",
+  "description": "リアルタイムルームサーバー（Express + Socket.io）",
   "main": "server.js",
-  "scripts": { "start": "node server.js" },
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "express": "^4.18.2",
     "socket.io": "^4.8.1"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "あなたの名前",
+  "license": "MIT"
 }
