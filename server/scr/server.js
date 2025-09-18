@@ -42,16 +42,10 @@ io.on('connection', (socket) => {
     io.emit('updateRooms', rooms);
   });
   
-  const PORT = process.env.PORT || 3000; // Renderでは process.env.PORT が必須
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
   socket.on('disconnect', () => {
     console.log('切断:', socket.id);
   });
 });
-
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
