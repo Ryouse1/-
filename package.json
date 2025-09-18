@@ -1,21 +1,18 @@
 {
-  "name": "live-web-app",
+  "name": "realtime-room-server",
   "version": "1.0.0",
-  "main": "server/scr/server.js",
+  "description": "リアルタイムルームサーバー（Express + Socket.io）",
+  "main": "server.js",
   "scripts": {
-  "build": "cd server/scr && npm install && npm run build",
-  "start": "node server/scr/server.js"
-},
+    "start": "node server.js"
+  },
   "dependencies": {
     "express": "^4.18.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^4.0.0",
-    "vite": "^4.4.9"
+    "socket.io": "^4.9.1"
   },
   "engines": {
-    "node": ">=18.0.0"
-  }
+    "node": ">=18"
+  },
+  "author": "あなたの名前",
+  "license": "MIT"
 }
